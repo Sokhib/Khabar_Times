@@ -3,7 +3,7 @@ package com.tora.khabartimes.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.tora.khabartimes.helpers.Event
+import com.tora.khabartimes.helper.Event
 
 abstract class BaseViewModel : ViewModel() {
     private val _progressState = MutableLiveData(0)

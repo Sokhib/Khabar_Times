@@ -1,4 +1,4 @@
-package com.tora.khabartimes.helpers
+package com.tora.khabartimes.helper
 
 open class Event<out T>(private val content: T) {
 
