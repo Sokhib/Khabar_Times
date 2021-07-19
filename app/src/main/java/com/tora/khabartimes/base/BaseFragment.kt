@@ -50,8 +50,6 @@ abstract class BaseFragment<BVM : BaseViewModel, DB : ViewDataBinding>(
         viewModel.progressState.observe(viewLifecycleOwner, {
             if (it != 0) progressBar!!.show() else {
                 progressBar!!.hide()
-                progressBar!!.dismiss()
-                progressBar!!.cancel()
             }
 
         })
