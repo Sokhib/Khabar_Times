@@ -1,4 +1,4 @@
-package com.tora.khabartimes.ui
+package com.tora.khabartimes.ui.mostpopularlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

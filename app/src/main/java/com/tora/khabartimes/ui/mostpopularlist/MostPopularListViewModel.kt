@@ -1,4 +1,4 @@
-package com.tora.khabartimes.ui
+package com.tora.khabartimes.ui.mostpopularlist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

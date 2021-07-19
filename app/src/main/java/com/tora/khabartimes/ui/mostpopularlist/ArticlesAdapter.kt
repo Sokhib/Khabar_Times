@@ -1,4 +1,4 @@
-package com.tora.khabartimes.ui
+package com.tora.khabartimes.ui.mostpopularlist
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

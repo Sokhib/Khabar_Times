@@ -1,17 +1,17 @@
-package com.tora.khabartimes.ui
+package com.tora.khabartimes.ui.mostpopularlist
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.tora.khabartimes.R
 import com.tora.khabartimes.base.BaseFragment
 import com.tora.khabartimes.databinding.MostPopularListFragmentBinding
 import com.tora.khabartimes.utils.Period
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MostPopularListFragment :
@@ -33,9 +33,18 @@ class MostPopularListFragment :
         onArticleClick()
     }
 
+    override fun onResume() {
+        super.onResume()
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+    }
+
     private fun onArticleClick() {
         articlesAdapter.onArticleClick = {
-            Timber.d("$it")
+            val direction =
+                MostPopularListFragmentDirections.actionMostPopularListFragmentToArticleDetailFragment(
+                    it
+                )
+            navigateWithDirection(direction)
         }
     }
 

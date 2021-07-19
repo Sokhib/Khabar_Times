@@ -7,7 +7,25 @@
 
     <fragment
         android:id="@+id/mostPopularListFragment"
-        android:name="com.tora.khabartimes.ui.MostPopularListFragment"
+        android:name="com.tora.khabartimes.ui.mostpopularlist.MostPopularListFragment"
         android:label="most_popular_list_fragment"
-        tools:layout="@layout/most_popular_list_fragment" />
+        tools:layout="@layout/most_popular_list_fragment">
+        <action
+            android:id="@+id/action_mostPopularListFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.tora.khabartimes.ui.articledetail.ArticleDetailFragment"
+        android:label="ArticleDetailFragment"
+        tools:layout="@layout/article_detail_fragment">
+        <argument
+            android:name="article"
+            app:argType="com.tora.khabartimes.data.model.Result" />
+    </fragment>
+
 </navigation>

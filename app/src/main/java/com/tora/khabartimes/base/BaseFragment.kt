@@ -96,7 +96,6 @@ abstract class BaseFragment<BVM : BaseViewModel, DB : ViewDataBinding>(
 
     override fun onDestroyView() {
         super.onDestroyView()
-//        androidAnim.removeAllListeners()
         progressBar!!.dismiss()
         progressBar = null
         binding = null

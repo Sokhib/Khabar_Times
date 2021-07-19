@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_color"
-        tools:context=".ui.MostPopularListFragment">
+        tools:context=".ui.mostpopularlist.MostPopularListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/articles_recycler"

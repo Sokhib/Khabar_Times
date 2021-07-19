@@ -1,8 +1,11 @@
 package com.tora.khabartimes.data.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Result(
     @SerializedName("abstract")
     val abs: String?,
@@ -12,8 +15,6 @@ data class Result(
     val assetId: Long?,
     @SerializedName("byline")
     val byline: String?,
-    @SerializedName("column")
-    val column: Any?,
     @SerializedName("des_facet")
     val desFacet: List<String>?,
     @SerializedName("eta_id")
@@ -48,4 +49,4 @@ data class Result(
     val uri: String?,
     @SerializedName("url")
     val url: String?
-)
+) : Parcelable

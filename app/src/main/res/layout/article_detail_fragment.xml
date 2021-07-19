@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="article"
+            type="com.tora.khabartimes.data.model.Result" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        tools:context=".ui.articledetail.ArticleDetailFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/back_frame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circular_ripple"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:translationZ="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/grey_circle_background"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/ic_left_arrow" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/article_photo_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_360sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_nytimes_ar21" />
+
+
+            <TextView
+                android:id="@+id/date_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:text="@{article.publishedDate}"
+                android:textAppearance="@style/SubText"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/article_photo_imageview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/article_photo_imageview"
+                tools:text="Sept 24, 2019" />
+
+            <TextView
+                android:id="@+id/title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@{article.title}"
+                android:textAppearance="@style/HeaderText"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_textview"
+                tools:text="Lorem Ipsum Dolor Lorem Ipsum DolorLorem Ipsum Dolor Lorem Ipsum Dolor" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/article_photo_imageview">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginVertical="@dimen/_24sdp"
+                    android:text="@{article.abs}"
+                    tools:text="Loremm Ipsum DolorLoremm Ipsum DolorLoremm Ipsum DolorLoremm Ipsum DolorLoremm Ipsum DolorLoremm Ipsum DolorLoremm Ipsum DolorLoremm Ipsum DolorLoremm Ipsum DolorLoremm Ipsum DolorLoremm Ipsum Dolor" />
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
