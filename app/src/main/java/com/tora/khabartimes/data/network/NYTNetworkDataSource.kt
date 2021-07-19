@@ -6,5 +6,5 @@ import com.tora.khabartimes.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface NYTNetworkDataSource {
-    suspend fun getMostPopularArticles(period: Period): Flow<Resource<PopularArticles>>
+    suspend fun getMostPopularArticles(period: Period): Flow<Resource<PopularArticles?>>
 }

@@ -5,12 +5,16 @@
 
     <data>
 
+        <variable
+            name="article"
+            type="com.tora.khabartimes.data.model.Result" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/celebrityPhotoCard"
+        android:id="@+id/article_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_margin="@dimen/_4sdp"
         android:background="@color/background_color"
         android:clipChildren="false"
         android:clipToPadding="false"
@@ -33,15 +37,18 @@
 
             <TextView
                 android:id="@+id/title_textview"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:ellipsize="end"
                 android:maxLines="2"
-                android:text="Lorem  Lorem IpsumLorem IpsumLorem Ipsum"
+                android:text="@{article.title}"
                 android:textAppearance="@style/HeaderText"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/article_photo_imageview"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="mostPopularListFragmentmostPopularListFragmentmostPopularListFragment" />
 
             <TextView
                 android:id="@+id/author_textview"
@@ -52,12 +59,13 @@
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="By Zibab By Zibab By Zibab By Zibab "
+                android:text="@{article.byline}"
                 android:textAppearance="@style/SubText"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/guideline"
                 app:layout_constraintStart_toEndOf="@id/article_photo_imageview"
-                app:layout_constraintTop_toBottomOf="@id/title_textview" />
+                app:layout_constraintTop_toBottomOf="@id/title_textview"
+                tools:text="This is created by" />
 
             <TextView
 
@@ -65,15 +73,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Lorem Ipsum By Zibab By Zibab "
+                android:text="@{article.publishedDate}"
                 android:textAlignment="viewEnd"
                 android:textAppearance="@style/SubText"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/guideline"
-                app:layout_constraintTop_toBottomOf="@id/title_textview" />
+                app:layout_constraintTop_toBottomOf="@id/title_textview"
+                tools:text="25.01.1994" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"

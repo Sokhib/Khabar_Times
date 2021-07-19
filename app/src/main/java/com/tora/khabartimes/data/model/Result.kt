@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Result(
     @SerializedName("abstract")
-    val `abstract`: String?,
+    val abs: String?,
     @SerializedName("adx_keywords")
     val adxKeywords: String?,
     @SerializedName("asset_id")

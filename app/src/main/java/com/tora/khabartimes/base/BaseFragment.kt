@@ -1,10 +1,13 @@
 package com.tora.khabartimes.base
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -12,21 +15,21 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
-import androidx.navigation.NavOptions
-import androidx.navigation.Navigation.findNavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import com.tora.khabartimes.R
 import kotlinx.coroutines.launch
+
 
 abstract class BaseFragment<BVM : BaseViewModel, DB : ViewDataBinding>(
     @LayoutRes val layout: Int
 ) : Fragment() {
     var binding: DB? = null
 
+
     private var progressBar: AlertDialog? = null
 
     abstract fun getViewModel(): BVM
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,15 +50,17 @@ abstract class BaseFragment<BVM : BaseViewModel, DB : ViewDataBinding>(
         viewModel.progressState.observe(viewLifecycleOwner, {
             if (it != 0) progressBar!!.show() else {
                 progressBar!!.hide()
+                progressBar!!.dismiss()
+                progressBar!!.cancel()
             }
 
         })
         lifecycleScope.launch {
             viewModel.errorText.observe(viewLifecycleOwner, { content ->
                 content.getContentIfNotHandled()
-                    ?.let {
+                    ?.let { text ->
                         // Only proceed if the event has never been handled
-                        Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT)
+                        Toast.makeText(requireActivity(), text, Toast.LENGTH_SHORT)
                             .show()
                     }
             })
@@ -65,19 +70,11 @@ abstract class BaseFragment<BVM : BaseViewModel, DB : ViewDataBinding>(
 
 
     fun navigateWithDirection(navDirections: NavDirections) {
-        findNavController(binding!!.root).navigate(navDirections)
+        Navigation.findNavController(binding!!.root).navigate(navDirections)
     }
 
     fun navigate(resId: Int) {
-        findNavController(binding!!.root).navigate(resId)
-    }
-
-    fun navigatePopUp(resId: Int, popResId: Int) {
-        findNavController(binding!!.root).navigate(
-            resId,
-            null,
-            NavOptions.Builder().setPopUpTo(popResId, false).build()
-        )
+        Navigation.findNavController(binding!!.root).navigate(resId)
     }
 
 
@@ -85,10 +82,22 @@ abstract class BaseFragment<BVM : BaseViewModel, DB : ViewDataBinding>(
         NavHostFragment.findNavController(this).navigateUp()
     }
 
+    fun hideKeyboard() {
+        val inputMethodManager =
+            requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(binding!!.root.windowToken, 0)
+    }
+
+    fun showKeyboard() {
+        val imm =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+//        androidAnim.removeAllListeners()
         progressBar!!.dismiss()
-        progressBar!!.cancel()
         progressBar = null
         binding = null
     }

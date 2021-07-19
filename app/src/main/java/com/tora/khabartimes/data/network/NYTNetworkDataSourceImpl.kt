@@ -1,5 +1,6 @@
 package com.tora.khabartimes.data.network
 
+import com.tora.khabartimes.data.model.PopularArticles
 import com.tora.khabartimes.utils.Period
 import com.tora.khabartimes.utils.Resource
 import kotlinx.coroutines.flow.flow
@@ -10,8 +11,9 @@ class NYTNetworkDataSourceImpl @Inject constructor(private val nytService: NYTSe
     NYTNetworkDataSource {
 
     override suspend fun getMostPopularArticles(period: Period) = flow {
+        var popularArticles: PopularArticles? = null
         try {
-            val popularArticles = nytService.fetchMostPopularArticles(period.days)
+            popularArticles = nytService.fetchMostPopularArticles(period.days)
             emit(Resource.success(popularArticles))
         } catch (e: Exception) {
             emit(
